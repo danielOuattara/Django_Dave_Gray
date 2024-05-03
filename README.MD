@@ -1,12 +1,26 @@
-# Process
+# 01 introduction
 
-- create a folder like `django_project`
+## Create a virtual environment
+
+- create the project folder like `django_project`
 - create a virtual environment: `python3 -m venv env`
+
+##  Install Django
+
 - install `Django` using `pip`
-- create `Django` installed: `pip freeze`
+- check `Django` installed: `pip freeze`
+
+## Create the a new Django project
+
 - create a django project: `django-admin startproject my_project`
+
+## Start server
+
 - `cd my_project` directory
-- `python3 manage.py runserver`. The server should run by default on port `localhost:8000`
+- `python3 manage.py runserver`.
+
+## Creating basic Views for homePage and aboutPAge
+
 - create `views.py` in the root of the project
 
 - add the following :
@@ -59,7 +73,11 @@
 </html>
 ```
 
-- in the `my_projects/settings.py` add the following in the `TEMPLATES -> DIRS` list : `'DIRS': ['templates'],`
+##  URLs and Views
+
+- in the `my_projects/settings.py` add the following in the `TEMPLATES --> DIRS` list : `'DIRS': ['templates'],`
+
+##  Adding HTML templates
 
 - update `my_project/views/py` as follow:
 
@@ -77,4 +95,113 @@ def homePage(request):
 def aboutPage(request):
     # return HttpResponse("About Page")
     return render(request, 'about.html')
+```
+
+## Static CSS Link
+
+- create `static/` folder in the same level as `templates/` folder
+- create `static/css/styles.css` file
+- add the following style defintions to the `styles.css` :
+
+```css
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+
+}
+
+body {
+min-height: 100vh;
+display: grid;
+place-content: center;
+font-size: 2rem;
+background-color: rgb(39, 39, 39);
+color: whitesmoke;
+}
+
+h1,
+p {
+text-align: center;
+}
+
+h1 {
+color: rgb(34, 34, 207);
+}
+
+```
+
+- in `my_project/settings.py` do the following:
+  - `import os` on the top
+  - add
+
+    ```python
+        STATIC_URL = 'static/'
+        STATICFILES_DIRS = [
+            os.path.join(BASE_DIR, 'static')
+        ]
+    ```
+
+- update `templates/index.html` as follow:
+
+ ```html
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <h1>Home Page</h1>
+    <p>Check out my <a href="/about"> about page</a></p>
+  </body>
+</html>
+```
+
+- update `templates/about.html` as follow:
+
+```html
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <h1>About Page</h1>
+    <p>Back to <a href="/"> Home page</a></p>
+  </body>
+</html>
+
+```
+
+## Javascript script
+
+- create `templates/javascript/main.js` and add `console.log("This is from your about page");`
+
+- update `templates/about.html` as follow:
+
+```html
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <h1>About Page</h1>
+    <p>Back to <a href="/"> Home page</a></p>
+    <script src="{% static 'javascript/main.js'%}"></script>
+  </body>
+</html>
+
 ```
