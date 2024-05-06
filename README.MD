@@ -4,11 +4,12 @@
 
 - create the project folder like `django_project`
 - create a virtual environment: `python3 -m venv env`
+- activate the new virtual environment created
 
 ##  Install Django
 
-- install `Django` using `pip`
-- check `Django` installed: `pip freeze`
+- install `Django` using `pip3`
+- check `Django` installed: `pip3 freeze`
 
 ## Create the a new Django project
 
@@ -79,7 +80,7 @@
 
 ##  Adding HTML templates
 
-- update `my_project/views/py` as follow:
+- update `my_project/views.y` as follow:
 
 ```python
 # from django.http import HttpResponse
@@ -101,7 +102,7 @@ def aboutPage(request):
 
 - create `static/` folder in the same level as `templates/` folder
 - create `static/css/styles.css` file
-- add the following style defintions to the `styles.css` :
+- add the following style definition to the `styles.css` :
 
 ```css
 * {
@@ -135,16 +136,16 @@ color: rgb(34, 34, 207);
   - `import os` on the top
   - add
 
-    ```python
-        STATIC_URL = 'static/'
-        STATICFILES_DIRS = [
-            os.path.join(BASE_DIR, 'static')
-        ]
-    ```
+```python
+    STATIC_URL = 'static/'
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+```
 
 - update `templates/index.html` as follow:
 
- ```html
+```html
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
