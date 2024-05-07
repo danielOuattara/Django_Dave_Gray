@@ -2,19 +2,36 @@
 
 ## Getting Started
 
-- start the virtual env: `cd 03_Django_models_and_migrations/ && source env/bin/activate`
+- start the virtual env: `cd 04_Django_ORM_intro/ && source env/bin/activate`
 
-## What are Django Models?
+## What is an ORM?
 
-## Creating a Model
+- ORM = Object Relational Mapper
 
-- `cd 03_Django_models_and_migrations/posts/models.py`
-- create a  model for `post` as follow:
+## Django Interactive Console
+
+- `python3  manage.py shell` to go to interactive shell
+
+## Creating and Saving a Post in interactive console
+
+ ```sh
+  >>> from posts.models import Post
+  >>> p = Post()
+  >>> p.title = "My first post!"
+  >>> p.save()
+  >>> Post.objects.all()
+  >>> exit()
+  ```
+
+## Adding a Method
+
+- go to `04_Django_ORM_intro/posts/models.py`
+- update as:
 
 ```py
 from django.db import models
 
-# Create your models here.
+# Create your models here
 
 class Post(models.Model):
     title = models.CharField(max_length=75)
@@ -22,32 +39,17 @@ class Post(models.Model):
     slug = models.SlugField()
     date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 ```
 
-## Create and Apply Migrations
+## Saving a 2nd Post to the Database
 
-- start the server: `python3 manage.py runserver`
-- check again that Django warns us about `unapplied migrations ...`
-- on creating the project `Django` comes with internal models and migrations that are not applied yet
-- run `python3 manage.py migrate` to apply all the migrations
-- that command run the Django internal migrations, but not ours
-- so to apply our migrations run `python3 manage.py makemigrations`
+- `python3  manage.py shell` to go to interactive shell
 
-```bash
-(env) daniel@debian-dbo:~/Documents/Computing/Python_DJANGO/Django_Dave_Gray/03_Django_models_and_migrations$ python3 manage.py makemigrations
-Migrations for 'posts':
-  posts/migrations/0001_initial.py
-    - Create model Post
-(env) daniel@debian-dbo:~/Documents/Computing/Python_DJANGO/Django_Dave_Gray/03_Django_models_and_migrations$ 
-```
+ ```sh
+  >>> from posts.models import Post; p = Post() ; p.title = "My second post!"; p.save() ; Post.objects.all(); exit()
+  ```
 
-- run `python3 manage.py migrate` to apply our migrations
-
-```bash
-(env) daniel@debian-dbo:~/Documents/Computing/Python_DJANGO/Django_Dave_Gray/03_Django_models_and_migrations$ python3 manage.py migrate
-Operations to perform:
-  Apply all migrations: admin, auth, contenttypes, posts, sessions
-Running migrations:
-  Applying posts.0001_initial... OK
-(env) daniel@debian-dbo:~/Documents/Computing/Python_DJANGO/Django_Dave_Gray/03_Django_models_and_migrations$ 
-```
+## Exiting the Shell
