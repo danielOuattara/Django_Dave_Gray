@@ -9,7 +9,7 @@
 ## Creating a Model
 
 - `cd 03_Django_models_and_migrations/posts/models.py`
-- create a  model for `post` as follow:
+- create/define a model for `post` as follow:
 
 ```py
 from django.db import models
@@ -31,7 +31,7 @@ class Post(models.Model):
 - on creating the project `Django` comes with internal models and migrations that are not applied yet
 - run `python3 manage.py migrate` to apply all the migrations
 - that command run the Django internal migrations, but not ours
-- so to apply our migrations run `python3 manage.py makemigrations`
+- so first, let's make/create our migrations by running `python3 manage.py makemigrations`
 
 ```bash
 (env) daniel@debian-dbo:~/Documents/Computing/Python_DJANGO/Django_Dave_Gray/03_Django_models_and_migrations$ python3 manage.py makemigrations
