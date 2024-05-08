@@ -1,4 +1,4 @@
-# 03 Django Models and Migrations
+# 04 Django ORM Intro
 
 ## Getting Started
 
@@ -7,26 +7,30 @@
 ## What is an ORM?
 
 - ORM = Object Relational Mapper
+- in this part we will explore the the Django ORM in Django Shell
 
 ## Django Interactive Console
 
-- `python3  manage.py shell` to go to interactive shell
+- `python3 manage.py shell` to go to interactive shell
 
 ## Creating and Saving a Post in interactive console
 
  ```sh
   >>> from posts.models import Post
   >>> p = Post()
+  >>> p 
+  <Post: Post object (None)> # <-- Response : No post object saved in the database yet !
   >>> p.title = "My first post!"
   >>> p.save()
   >>> Post.objects.all()
+  <QuerySet [<Post: Post object (1)>]> # <-- Response :  1 post object in the database
   >>> exit()
   ```
 
 ## Adding a Method
 
 - go to `04_Django_ORM_intro/posts/models.py`
-- update as:
+- update as to simply add a new method in the model, so no migration needed
 
 ```py
 from django.db import models
@@ -47,6 +51,7 @@ class Post(models.Model):
 ## Saving a 2nd Post to the Database
 
 - `python3  manage.py shell` to go to interactive shell
+- type in those command to see what is in the
 
  ```sh
   >>> from posts.models import Post; p = Post() ; p.title = "My second post!"; p.save() ; Post.objects.all(); exit()
