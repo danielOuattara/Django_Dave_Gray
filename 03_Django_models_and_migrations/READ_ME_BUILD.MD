@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-- start the virtual env: `cd 03_Django_models_and_migrations/ && source env/bin/activate`
+- start the virtual env: `source env/bin/activate` then `cd 03_Django_models_and_migrations/`
 
 ## What are Django Models?
 
