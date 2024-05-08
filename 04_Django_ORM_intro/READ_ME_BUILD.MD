@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-- start the virtual env: `cd 04_Django_ORM_intro/ && source env/bin/activate`
+- start the virtual env: `source env/bin/activate` then `cd 04_Django_ORM_intro/`
 
 ## What is an ORM?
 
