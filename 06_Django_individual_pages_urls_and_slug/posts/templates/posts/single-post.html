@@ -1,0 +1,21 @@
+{% extends 'layout.html'%}
+
+{% block title%}
+  {{post.title}} 
+{% endblock %}
+
+
+{% block content%}
+<section>
+  <h1> {{post.title}}</h1>
+  <article class="post">
+   <p>{{post.date}}</p>
+   <p>{{post.body}}</p>
+  </article>
+  <a href={% url 'posts:posts-list' %}>
+    <p>Back to all posts</p>
+  </a>
+</section>
+  {% endblock %}
+
+
