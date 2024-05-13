@@ -2,12 +2,13 @@
 
 ## Getting Started
 
-- start the virtual env: `source env/bin/activate`  then `cd 05_Django_admin/ &&`
+- start the virtual env: `source env/bin/activate`  then `cd 05_Django_admin`
 
 ## Finding the Django Admin
 
-- the `Django Admin` feature provides tools that we would have to built ourself
-- go `05_Django_admin/my_project/urls.py` and locate it:
+- the `Django Admin` feature provides tools that we would have to build ourself
+  
+- go to `05_Django_admin/my_project/urls.py` and locate it:
 
 ```py
 from django.contrib import admin
@@ -134,6 +135,6 @@ from .models import Post
 
 
 def posts_list(request):
-    posts = Post.objects.all().order_by('date')
+    posts = Post.objects.all().order_by('-date')
     return render(request, 'posts/posts_list.html', {'posts': posts})
 ```
