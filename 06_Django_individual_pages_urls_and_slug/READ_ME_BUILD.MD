@@ -9,13 +9,13 @@
 - run the server: `python3 manage.py runserver`
 - update the url bar to `http://localhost:8000/admin/` to login as admin.
 - then login: enter username and password if necessary
-- check every post entry has a `slug`
+- check that every post entry has a `slug`
 
 ## (03:02) Applying a Named URL
 
 - keep the server running
-- go to: `06_Django_individual_pages_urls_and_slug/posts/urls.py`
-- add a name `posts` to the `post` url as follow:
+- go to: `/posts/urls.py`
+- add a name `posts-list` to the `post` url as follow:
 
 ```py
 from django.urls import path
@@ -26,9 +26,9 @@ urlpatterns = [
 ]
 ```
 
-- then go to : `06_Django_individual_pages_urls_and_slug/templates/layout.html`
+- then go to : `/templates/layout.html`
 
-- update the `nav` as follow to be able to use the name `posts` defined for posts in the urls.py module:
+- update the `nav` as follow to be able to use the name `posts-list` defined for Name urls in the urls.py module:
 
 ```html
     <nav>
@@ -47,7 +47,7 @@ urlpatterns = [
 
 ## (06:53) Applying a Slug Path Converter
 
-- go back to `06_Django_individual_pages_urls_and_slug/posts/urls.py`
+- go back to `/posts/urls.py`
 - update as follow:
 
 ```py
@@ -60,14 +60,14 @@ urlpatterns = [
 ]
 ```
 
-where the first `slug` designates the dynamic parameter, and the second `slug` designates its actual value.
+where the first `slug` designates the path converter, and the second `slug` designates its actual dynamic value.
 
-- then you need to create the controller `views.post_page` in `06_Django_individual_pages_urls_and_slug/posts/urls.py`
+- then you need to create the controller in `/posts/views.py`
 
 ## (08:26) Create a post page view function
 
-- go to `06_Django_individual_pages_urls_and_slug/posts/urls.py`
-- create the new controller: `views.post_page`
+- go to `/posts/views.py`
+- create the new controller: `post_page` that will then be imported in `/posts/urls`
 - to do so update it as follow (for now) to get the echoed slug:
 
 ```py
@@ -88,7 +88,7 @@ def post_page(request, slug):
 
 ## (09:27) Passing a parameter with a Named URL
 
-- update `06_Django_individual_pages_urls_and_slug/posts/templates/posts/posts_list.html` as follow
+- update `/posts/templates/posts/posts_list.html` as follow
 
 ```html
       <article class="post">
@@ -105,7 +105,7 @@ def post_page(request, slug):
 ## (11:59) Namespacing Named URLs
 
 - create a Namespace for this Django app called `app_name = "posts"`
-- to do so, update `06_Django_individual_pages_urls_and_slug/posts/urls.py` as follow:
+- to do so, update `/posts/urls.py` as follow:
 
 ```py
 from django.urls import path
@@ -121,7 +121,7 @@ urlpatterns = [
 # Note: paths name have been updated !
 ```
 
-- update `06_Django_individual_pages_urls_and_slug/templates/layout.html` accordingly to the new Namespace defined :
+- update `/templates/layout.html` accordingly to the new Namespace defined :
 
 ```html
     <nav>
@@ -131,7 +131,7 @@ urlpatterns = [
     </nav>
 ```
 
-- also update `06_Django_individual_pages_urls_and_slug/posts/templates/posts/posts_list.html` as follow, accordingly to the new Namespace defined :
+- also update `/posts/templates/posts/posts_list.html` as follow, accordingly to the new Namespace defined :
 
 ```html
       <article class="post">
@@ -145,7 +145,7 @@ urlpatterns = [
 
 ## (14:24) Updating the post page view function
 
-- update controller in `06_Django_individual_pages_urls_and_slug/posts/views.py` to build a complete response for single post, not just an echoed slug response
+- update controller in `/posts/views.py` to build a complete response for single post, not just an echoed slug response
 
 ```py
 from django.shortcuts import render
@@ -171,12 +171,12 @@ def post_page(request, slug):
 ```html
 {% extends 'layout.html'%}
 
-{% block title%}
+{% block title %}
   {{post.title}} 
 {% endblock %}
 
 
-{% block content%}
+{% block content %}
 <section>
   <h1> {{post.title}}</h1>
   <article class="post">
