@@ -8,7 +8,8 @@
 
 ## Creating a Model
 
-- `cd 03_Django_models_and_migrations/posts/models.py`
+- open `03_Django_models_and_migrations/posts/models.py`
+
 - create/define a model for `post` as follow:
 
   ```py
@@ -23,13 +24,19 @@
       date = models.DateTimeField(auto_now_add=True)
   ```
 
+- read the docs if required, like:
+  
+  - <https://docs.djangoproject.com/en/5.1/ref/models/>
+
+  - <https://docs.djangoproject.com/en/5.1/ref/models/fields/>
+
 ## Create and Apply Migrations
 
 - start the server: `python3 manage.py runserver`
   
 - check again that Django warns us about `unapplied migrations ...`
   
-- on creating the project `Django` comes with internal models and
+- upon creating the project, `Django` comes with internal models and
   migrations that are not applied yet
   
 - run `python3 manage.py migrate` to apply all the migrations
