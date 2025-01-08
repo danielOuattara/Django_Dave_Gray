@@ -3,13 +3,40 @@
 ## Create a virtual environment
 
 - create the project folder like `django_project`
-- create a virtual environment: `python3 -m venv env`
-- activate the new virtual environment created
+  
+- create a virtual environment:
+
+```bash
+  python3 -m venv env
+```
+
+- activate the new virtual environment created:
+
+```bash
+  source env/bin/activate`
+```
 
 ##  Install Django
 
 - install `Django` using `pip3`
-- check `Django` installed: `pip3 freeze`
+
+```bash
+  python3 -m pip3 install Django
+```
+
+- check `Django` installed: ``
+  
+```sh
+pip3 freeze
+
+# or
+
+python3 -m django --version
+
+# or
+
+django-admin --version
+```
 
 ## Create the a new Django project
 
@@ -18,10 +45,12 @@
 ## Start server
 
 - `cd my_project/` directory
+
 - run the development server : `python3 manage.py runserver`
+
 - navigate to `http://127.0.0.1:8000` to check application server running
   
-##  URLs and Views
+## URLs and Views
 
 - update `/my_project/urls.py` as follow:
 
@@ -117,7 +146,7 @@
   ]
   ```
 
-##  Adding HTML templates
+## Adding HTML templates
 
 - update `my_project/views.py` as follow:
 
@@ -143,7 +172,9 @@
 ## Static CSS Link
 
 - create `static/` folder in the same level as `templates/` folder
+
 - `touch static/css/styles.css` file
+
 - add the following style definition to the `styles.css` :
 
   ```css
@@ -151,7 +182,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
   }
 
   body {
@@ -175,16 +205,18 @@
 
 - in `my_project/settings.py` do the following to make `static/` folder visible by Django:
   - `import os` on the top
+  
   - add :
 
   ```python
   STATIC_URL = 'static/'
+
   STATICFILES_DIRS = [
-      os.path.join(BASE_DIR, 'static')
+      os.path.join(BASE_DIR, 'static'),
   ]
   ```
 
-- update `templates/index.html` as follow:
+- update `/templates/index.html` as follow:
 
   ```html
   <!DOCTYPE html>
