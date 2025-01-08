@@ -3,12 +3,14 @@
 ## Getting Started
 
 - start the virtual env: `source env/bin/activate` then `cd 04_Django_ORM_intro/`
+  
+- in this section we are going to try the `Django ORM` in the terminal
 
 ## What is an ORM?
 
-- ORM = Object Relational Mapper
+- ORM = Object Relational Mapping
   
-- in this part we will explore the the Django ORM in Django Shell
+- in this part we will explore the the `Django ORM` in Django Shell
 
 ## Django Interactive Console
 
@@ -20,7 +22,7 @@
     >>> from posts.models import Post
     >>> p = Post()
     >>> p 
-    <Post: Post object (None)> # <-- Response : No post object saved in the database yet !
+    <Post: Post object (None)> # <-- Response `None` means no post object saved in the database yet !
     >>> p.title = "My first post!"
     >>> p.save()
     >>> Post.objects.all()
@@ -32,8 +34,8 @@
 
 - go to `/posts/models.py`
   
-- update as to simply add a new method in the model,
-  so no migration needed
+- update it to simply add a new method in the model,
+  so that no migration will be needed
 
   ```py
   from django.db import models
@@ -53,6 +55,7 @@
 ## Saving a 2nd Post to the Database
 
 - `python3  manage.py shell` to go to interactive shell
+
 - type in those command to see what is in the
 
   ```sh
@@ -60,3 +63,5 @@
   ```
 
 ## Exiting the Shell
+
+- exit the shell : `quit()` OR `exit()`
