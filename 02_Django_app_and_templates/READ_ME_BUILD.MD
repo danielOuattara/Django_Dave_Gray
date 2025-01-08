@@ -3,6 +3,7 @@
 ## start this section
 
 - copy the folder 01_introduction to 02_Django_app_and_templates
+  
 - activate the virtual env
 
 ## add VS CODE extension
@@ -72,7 +73,9 @@
 ## Running the sever
 
 - check the server running
+
 - navigate to `http://127.0.0.1:8000/posts` and confirm running
+
 - notice the styling is not updated
 
 ##  Adding CSS
@@ -82,6 +85,7 @@
 ## Create a base layout template
 
 - `touch /templates/layout.html`
+  
 - add the following:
 
     ```html
@@ -93,7 +97,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
         <title>
-            {% block title%}
+            {% block title %}
             Django App
             {% endblock %}
         </title>
@@ -108,7 +112,7 @@
             <a href="/posts">News</a> |
         </nav>
         <main>
-            {%block content%}
+            {%block content %}
             {%endblock %}
         </main>
         
@@ -118,7 +122,7 @@
 
 ## Extending the layout template
 
-- `/templates/index.html` a follow:
+- update `/templates/index.html` as follow:
 
     ```html
     {% extends 'layout.html'%}
@@ -135,7 +139,7 @@
     {% endblock %}
     ```
 
-- `/templates/about.html` a follow:
+- update `/templates/about.html` as follow:
 
     ```html
     {% extends 'layout.html'%}
