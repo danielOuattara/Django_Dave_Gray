@@ -2,33 +2,42 @@
 
 ## (00:29)Getting Started
 
-- start the virtual env: `source env/bin/activate`  then `cd 06_Django_individual_pages_urls_and_slug/`
+- start the virtual env: `source env/bin/activate` then
+  `cd 06_Django_individual_pages_urls_and_slug/`
 
 ## (01:04) Adding Post Slugs
 
 - run the server: `python3 manage.py runserver`
-- update the url bar to `http://localhost:8000/admin/` to login as admin.
+
+- update the url bar to `http://localhost:8000/admin/` to
+  login as admin.
+
 - then login: enter username and password if necessary
+
 - check that every post entry has a `slug`
 
 ## (03:02) Applying a Named URL
 
 - keep the server running
+
 - go to: `/posts/urls.py`
-- add a name `posts-list` to the `post` url as follow:
+
+- update `urlpatterns` list: add a name `posts` to
+  the `post` url as follow:
 
 ```py
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.posts_list, name="posts"),
+  path('', views.posts_list, name="posts"),
 ]
 ```
 
 - then go to : `/templates/layout.html`
 
-- update the `nav` as follow to be able to use the name `posts-list` defined for Name urls in the urls.py module:
+- update the `nav` as follow to be able to use the name
+  `posts-list` defined for Name urls in the urls.py module:
 
 ```html
     <nav>
@@ -39,15 +48,21 @@ urlpatterns = [
 ```
 
 - go to browser and test the update
-- the goal is to be able to easily create individual url to navigate to single post
+  
+- **NOTE :** the goal is to be able to easily create individual url to
+  navigate to single post
 
 ## (05:44) Django Path Converters
 
-- go to Django docs: `https://docs.djangoproject.com/en/5.0/topics/http/urls/#path-converters`
+- go to Django docs:
+  `https://docs.djangoproject.com/en/5.0/topics/http/urls/#path-converters`
+
+- read about `path converter`
 
 ## (06:53) Applying a Slug Path Converter
 
 - go back to `/posts/urls.py`
+
 - update as follow:
 
 ```py
@@ -60,15 +75,20 @@ urlpatterns = [
 ]
 ```
 
-where the first `slug` designates the path converter, and the second `slug` designates its actual dynamic value.
+- the first `slug` designates the path converter, and
+  the second `slug` designates its actual dynamic value.
 
 - then you need to create the controller in `/posts/views.py`
 
 ## (08:26) Create a post page view function
 
 - go to `/posts/views.py`
-- create the new controller: `post_page` that will then be imported in `/posts/urls`
-- to do so update it as follow (for now) to get the echoed slug:
+
+- create the new controller: `post_page` that will then be
+  imported in `/posts/urls`
+
+- to do so update `/posts/views.py` as follow (for now) to get
+  the echoed slug:
 
 ```py
 from django.shortcuts import render
@@ -105,13 +125,14 @@ def post_page(request, slug):
 ## (11:59) Namespacing Named URLs
 
 - create a Namespace for this Django app called `app_name = "posts"`
+
 - to do so, update `/posts/urls.py` as follow:
 
 ```py
 from django.urls import path
 from . import views
 
-app_name = "posts" #<-- Namespace
+app_name = "posts" # <-- Namespace
 
 urlpatterns = [
     path('', views.posts_list, name="posts-list"),
@@ -121,7 +142,8 @@ urlpatterns = [
 # Note: paths name have been updated !
 ```
 
-- update `/templates/layout.html` accordingly to the new Namespace defined :
+- update `/templates/layout.html` accordingly to the new Namespace
+  defined :
 
 ```html
     <nav>
@@ -131,7 +153,8 @@ urlpatterns = [
     </nav>
 ```
 
-- also update `/posts/templates/posts/posts_list.html` as follow, accordingly to the new Namespace defined :
+- also update `/posts/templates/posts/posts_list.html` as
+  follow accordingly to the new Namespace defined :
 
 ```html
       <article class="post">
@@ -145,7 +168,8 @@ urlpatterns = [
 
 ## (14:24) Updating the post page view function
 
-- update controller in `/posts/views.py` to build a complete response for single post, not just an echoed slug response
+- update controller in `/posts/views.py` to build a complete
+  response for single post, not just an echoed slug response
 
 ```py
 from django.shortcuts import render
@@ -188,9 +212,22 @@ def post_page(request, slug):
   </a>
 </section>
   {% endblock %}
-
-
-
 ```
 
 ## (19:09) Bonus: Emoji Accessibility
+
+- For accessibility concern, put the emojis in `<span>` element
+  and add specific attributes to them
+
+```html
+...
+    <nav>
+        <a href="/">Home <span role="img" aria-label="home">🏠</span></a> |
+        <a href="/">About <span role="img" aria-label="about">❔</span></a> |
+        <a href="{% url 'posts:posts-list' %}">News <span role="img" aria-label="posts">📰</span></a> |
+    </nav>
+...
+</body>
+</html>
+
+```
