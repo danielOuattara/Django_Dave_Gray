@@ -4,5 +4,10 @@ from .models import Post
 
 
 def posts_list(request):
+    """ list all posts """
     posts = Post.objects.all().order_by('-date')
-    return render(request, 'posts/posts_list.html', {'posts': posts})
+    return render(
+        request,
+        template_name='posts/posts_list.html',
+        context={'posts': posts}
+    )
