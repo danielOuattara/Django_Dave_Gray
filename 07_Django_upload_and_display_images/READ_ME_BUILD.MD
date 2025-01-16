@@ -3,11 +3,13 @@
 ##  (00:26) Getting Started
 
 - start the virtual env: `source env/bin/activate`  
+
 - then  `cd 07_Django_upload_and_display_images/`
 
 ##  (01:00) Image Settings
 
 - go to `/my_project/settings.py`
+
 - navigate to under `STATICFILES_DIRS` list and add `MEDIA_URL`  and a `MEDIA_ROOT` as follow:
 
 ```py
@@ -23,7 +25,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ##  (02:44) Updating URL Patterns
 
 - go to `/my_project/urls.py`
-- update a follow:
+  
+- update as follow:
 
 ```py
 from django.contrib import admin
@@ -40,6 +43,7 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
 ]
 
+# tell the Django project where to find images
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
@@ -50,6 +54,7 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ##  (05:24) Updating the Post Model
 
 - go to `/posts/models.py`
+
 - update the post model as follow:
 
 ```py
@@ -66,25 +71,33 @@ class Post(models.Model):
 
 - run a post model migration to take take its update:
   `python3 manage.py makemigrations`
+
 - now apply those migrations: `python3 manage.py migrate`
 
 ##  (07:32) Adding Images to Posts
 
 - run the server: `python3 manage.py runserver`
+
 - got to admin panel: `http://127.0.0.1:8000/admin/`
+
 - then login: provide username and password if any
+
 - go `posts` and check that `Banner` is now present for any post item
+
 - select browse to grab an image for each post
+
 - let one post without image
 
 ##  (09:24) Adding the Fallback Image
 
 - check in root that `media/` has been created
+
 - add there a `fallback.png` image as a fallback image
 
 ##  (09:56) Displaying Images in Templates
 
 - go to `posts/templates/posts/single-post.html`
+
 - update the template as follow:
 
 ```py
@@ -110,4 +123,4 @@ class Post(models.Model):
   {% endblock %}
 ```
 
-- add some style, go to `/static/css/styles.css`
+- add some style: go to `/static/css/styles.css`

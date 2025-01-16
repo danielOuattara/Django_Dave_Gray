@@ -12,4 +12,4 @@ class Post(models.Model):
     banner = models.ImageField(default='fallback.png', blank=True)
 
     def __str__(self):
-        return self.title
+        return str(self.title)
