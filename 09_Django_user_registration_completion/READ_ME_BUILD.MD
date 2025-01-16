@@ -3,15 +3,20 @@
 ##  (00:27) Getting Started
   
 - start the virtual env: `source env/bin/activate`  
+
 - then  `cd 09_Django_user_registration/`
 
 ##  (00:55) Django's User Creation Form
 
-- go to `users/views.py` controllers
-- import `UserCreationForm`  package to allow create form
+- go to `users/views.py` views controllers
+
+- import  built-in `UserCreationForm` class to allow create form
+
 - create the `form`
-- and pass it as a context through `render` method to `register.html` template
-- update `register` as follow, until next recommended:
+
+- and pass it as a context through `render` function to `register.html` template
+
+- update `register` as follow, until next recommendations:
 
 ```py
 from django.shortcuts import render
@@ -27,7 +32,9 @@ def register(request):
 ##  (03:09) Adding the form to a template
 
 - go to `/users/templates/users/register.html`
-- update it as follow, to be able to use the previously created form as context:
+
+- update it as follow, to be able to use the previously
+  created form as context:
 
 ```html
 {% extends 'layout.html' %}
@@ -54,6 +61,7 @@ User
 ##  (05:09) The CSRF Token
 
 - security concern
+
 - to avoid CSRF add `csrf_token` as follow in `register.html` template:
 
 ```html
@@ -84,7 +92,9 @@ User
 ##  (07:48) Saving the User after form submission
 
 - go to `users/views.py` controllers
+
 - import `redirect` to redirect upon form submitted successfully
+
 - update the `register` controller as follow:
 
 ```py
@@ -108,11 +118,13 @@ def register(request):
 ##  (11:35) Checking form logic
 
 - check effective user register
+
 - check register failure: duplicate username, password, etc...
 
 ##  (13:16) Verifying the new user was saved
 
 - navigate to `http://localhost:8000/admin`
+
 - log as admin and verify the newly added user
 
 ##  (13:54) Update the Navbar
