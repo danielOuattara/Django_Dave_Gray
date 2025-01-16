@@ -3,39 +3,63 @@
 ## (00:25) The Challenge : Todo
 
 - add a new app called `user`
+
 - allow to navigate to `localhost:8000/user/register/`
+
 - and display a heading there
 
 ## (01:47) The Solution: Getting Started
 
 ## (02:15) Create the users app
 
-- create `user` app: `python3 manage.py startapp users`
+- start the virtual env: `source env/bin/activate`  
 
-## (02:49) Add users to installed apps
+- create `user` app:
+
+```sh
+python3 manage.py startapp users
+```
+
+## (02:49) Add users to `INSTALLED_APPS`
 
 - go to `/my_project/settings.py`
+
 - register `users` under `INSTALLED_APPS`
 
-## (03:20) Add urls.py to users app
+```py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'posts',
+    'users', # <-- Here !
+]
+```
+
+## (03:20) Add urls.py into users/ app
 
 - go to `users/` app directory and create `urls.py`
  module
 
-- then add content to  `users/urls.py` as follow:
+- then add content to `users/urls.py` as follow:
 
 ```py
 from django.urls import path
 from . import views
 
+app_name = 'users'
+
 urlpatterns = [
-    path('register/', views.register),
+    path('register/', views.register, name="register"),
 ]
 ```
 
 ## (04:48) Update project urlpatterns
 
-- upddate `my_project/urls.py` as follow:
+- update `my_project/urls.py` as follow:
 
 ```py
 from django.contrib import admin
@@ -54,18 +78,16 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 ```
 
-## (05:45) Create the register view
+## (05:45) Create the `register` view
 
-- go to `users/views.py` and add `register controller` as follow:
+- go to `users/views.py` and add  a `register view` (controller) as follow:
 
 ```py
 from django.shortcuts import render
 
 # Create your views here.
-
 
 def register(request):
     return render(request, 'users/register.html')

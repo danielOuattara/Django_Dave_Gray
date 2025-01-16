@@ -4,4 +4,5 @@ from django.shortcuts import render
 
 
 def register(request):
+    """User register controller"""
     return render(request, 'users/register.html')
